@@ -1,13 +1,15 @@
-# Projeto de Conexão Mobile com API  
+# 🏥 MediConnect 
 
-Este repositório contém dois projetos integrados para oferecer uma solução completa de conexão entre um aplicativo mobile e uma API REST:  
+**MediConnect** é um sistema completo para **agendamento de consultas médicas**, dividido em dois projetos:
 
-- **mobileapp**: Aplicativo mobile desenvolvido para conectar pacientes e médicos, permitindo agendamento de consultas, acompanhamento de exames, entre outros serviços.  
-- **webapi**: API desenvolvida com ASP.NET para gerenciar o backend do aplicativo, incluindo autenticação, gerenciamento de usuários e CRUDs necessários para o funcionamento da aplicação.  
+* Um **backend** desenvolvido em **ASP.NET Core MVC**, responsável pela API RESTful e lógica de negócio.
+* Um **aplicativo mobile** criado com **React Native + Expo**, com arquitetura modular.
 
----
+O objetivo do projeto é oferecer uma solução integrada que permita:
 
-O aplicativo mobile consome dados de uma API RESTful, fornecida pelo projeto webapi, para garantir uma experiência rápida e segura para os usuários.  
+* **Usuários**: Cadastrar-se e realizar agendamentos de consultas médicas de forma simplificada.
+* **Administradores**: Gerenciar as funcionalidades do aplicativo em uma área restrita.
+ 
 
 ---
 
@@ -31,85 +33,174 @@ O aplicativo mobile consome dados de uma API RESTful, fornecida pelo projeto web
   <img src="https://github.com/user-attachments/assets/8f3a78d6-ff35-40b5-9b83-0fce826f2bee" width="200" />
 </p>
 
-
----
  
-## Estrutura do Repositório  
+---
 
-    .
-    ├── mobileapp/     # Aplicativo mobile
-    └── webapi/        # API ASP.NET
+## 🌐 Backend - ASP.NET Core MVC (`/webapi`)
+
+### 📌 Tecnologias Utilizadas
+
+| Tecnologia                | Função                                                  |
+| ------------------------- | ------------------------------------------------------- |
+| **ASP.NET Core 8**        | Framework principal para a construção da Web API.       |
+| **Entity Framework Core** | ORM para persistência de dados relacionais.             |
+| **JWT Authentication**    | Implementação de autenticação via tokens.               |
+| **Swagger / Swashbuckle** | Geração de documentação interativa para testes da API.  |
+
+### 🧱 Arquitetura: MVC
+
+O backend segue o padrão **Model-View-Controller (MVC)** adaptado para APIs RESTful:
+
+```
+webapi/
+├── Controllers/       # Lida com requisições HTTP e direciona para os serviços
+├── Models/            # Representações das entidades do domínio (EF Core)
+├── DTOs/              # Objetos de transferência de dados
+└── Repositories/       # Regras de validação com FluentValidation
+```
+
+### 🔐 Segurança
+
+* Autenticação baseada em **JWT**.
+* Controle de acesso com `[Authorize]`, incluindo roles (paciente, admin).
+* Tokens armazenam tipo de usuário para controle de rotas.
 
 ---
 
-## Como Executar  
+## 📱 Aplicativo Mobile - React Native (`/mobileapp`)
 
-### Pré-requisitos  
+### 📌 Tecnologias Utilizadas
 
-- Node.js e npm/yarn instalados para o projeto mobile.  
-- .NET 8 SDK instalado para o projeto webapi.  
-- Docker (opcional) para rodar a API em container.
+| Tecnologia           | Função                                                           |
+| -------------------- | ---------------------------------------------------------------- |
+| **React Native**     | Framework para desenvolvimento nativo com JavaScript/TypeScript. |
+| **Expo**             | Plataforma para simplificar o desenvolvimento, build e testes.   |
+| **TypeScript**       | Tipagem estática para maior confiabilidade.                      |
+| **Axios**            | Cliente HTTP para consumo da API.                                |
+| **Expo router**   | Gerenciamento de rotas e navegação entre telas.                  |
+| **NativeWind**       | Estilização com utilitários baseados no Tailwind CSS.            |
+| **Context API**      | Gerenciamento de estados globais (como autenticação e usuário).  |
+| **AsyncStorage**     | Armazenamento local dos dados como token JWT.                    |
 
----
+### 🧱 Arquitetura Modular
 
-### Executando o Aplicativo Mobile  
+O projeto é organizado de forma modular, favorecendo **manutenção, separação de responsabilidades e escalabilidade**:
 
-1. Navegue até a pasta do aplicativo:  
-    ```bash
-    cd mobileapp
-    ```
+```
+mobileapp/
+├── assets/              # Imagens, fontes e outros recursos estáticos
+├── components/          # Componentes reutilizáveis (botões, cards, inputs)
+├── contexts/            # Contextos globais (ex: AuthContext)
+├── services/            # Serviços de API (ex: auth, agendamentos, clínicas)
+├── pages/               # Telas do app (Login, Cadastro, Home, Admin)
+├── app/                 # Configurações de rotas e navegação
+└── utils/               # Funções utilitárias (ex: formatação de datas)
+```
 
-2. Instale as dependências:  
-    ```bash
-    npm install
-    ```
+### 📲 Funcionalidades
 
-3. Execute o aplicativo:  
-    ```bash
-    npm run start
-    ```
-    ou para abrir direto no navegador
-    ```bash
-    npm run web
-    ```
+#### Usuário (Paciente)
 
----
+* Cadastro e login com autenticação via JWT
+* Agendamento de consulta
+* Visualizar exames
+* Visualizar convênios aceitos
+* Visualizar unidades médicas
+* Visualizar unidades Dados do usuário logado
+* Cadastrar endereço do usuário
+* Histórico de agendamentos
+* Avaliação pós consulta
 
-### Executando a API ASP.NET  
+#### Administrador
 
-1. Navegue até a pasta do projeto webapi:  
-    ```bash
-    cd webapi
-    ```
-
-2. Restaure as dependências:  
-    ```bash
-    dotnet restore
-    ```
-
-3. Compile o projeto:  
-    ```bash
-    dotnet clean
-    dotnet build
-    ```
-
-4. Execute as migrações para preparar o banco de dados (opcional):  
-    ```bash
-    dotnet ef database update
-    ```
-
-5. Inicie a aplicação:  
-    ```bash
-    dotnet watch
-    ```
-
-6. A API estará disponível em: [http://localhost:5000](http://localhost:5000)  
+* Autenticar no sistema
+* Gerenciamento de usuário
+* Gerenciamento de administradores
+* Gerenciamento de unidades
+* Gerenciamento de médicos
+* Gerenciamento de especialização
+* Gerenciamento de exames
+* Gerenciamento de convênios
+* Gerenciamento de agendamentos
 
 ---
 
-## Tecnologias Utilizadas  
+## 🛠️ Como Executar o Projeto
 
-- **mobileapp**: Desenvolvido com React Native e Expo, Typescript, Nativewind.  
-- **webapi**: Desenvolvido com ASP.NET Core e Entity Framework Core.  
+### Pré-requisitos
+
+* [.NET 8 SDK](https://dotnet.microsoft.com)
+* [Node.js](https://nodejs.org/)
+* [Expo CLI](https://docs.expo.dev/get-started/installation/)
+* [Visual Studio 2022+](https://visualstudio.microsoft.com/)
+* SQL Server ou SQLite
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/marcellyfreitas/mediconnect.git
+cd mediconnect
+```
+
+### 2. Executar a API
+
+```bash
+cd webapi
+dotnet ef database update
+dotnet run
+```
+
+A API estará disponível em `https://localhost:5001`.
+
+### 3. Executar o app mobile
+
+```bash
+cd mobileapp
+npm install
+npm start
+```
+
+Use o **Expo Go** para escanear o QR code ou um emulador Android/iOS.
+
+---
+
+## 📚 Documentação da API
+
+Após iniciar a aplicação, acesse:
+
+```
+https://localhost:5001/swagger
+```
+
+* A documentação interativa via **Swagger** permite testar todos os endpoints com facilidade.
+
+---
+
+## ✅ Funcionalidades Implementadas
+
+* [x] Cadastro/Login com autenticação via JWT (usuário e admin)
+* [x] CRUD de usuários e administrador, exames, convênios, unidades, especialidades, endereços e médicos (admin)
+* [x] Agendamento de consultas
+* [x] Cadastro do endereço do usuário
+* [x] Gerenciar dados do usuário altenticado
+* [x] Funcionalidade de cancelar conta
+* [x] Visualizar unidades
+
+---
+
+## 🚧 Melhorias Futuras
+
+* [ ] Visualizar exames
+* [ ] Visualizar convênios
+* [ ] Implenmentar banco de dados não relacional
+* [ ] Criar build para deploy do aplicativo
+* [ ] Deploy do backend no smarterASP
+
+---
+
+## 👩‍💻 Autora
+
+Desenvolvido por **Marcelly Freitas**
+🔗 [github.com/marcellyfreitas](https://github.com/marcellyfreitas)
 
 ---
