@@ -1,0 +1,53 @@
+# Mobile app
+mobileapp/.env
+mobileapp/node_modules/
+mobileapp/.expo/
+mobileapp/dist/
+mobileapp/web-build/
+mobileapp/expo-env.d.ts
+mobileapp/*.orig.*
+mobileapp/*.jks
+mobileapp/*.p8
+mobileapp/*.p12
+mobileapp/*.key
+mobileapp/*.mobileprovision
+mobileapp/.metro-health-check*
+mobileapp/npm-debug.*
+mobileapp/yarn-debug.*
+mobileapp/yarn-error.*
+mobileapp/.env*.local
+mobileapp/*.tsbuildinfo
+mobileapp/app-example
+
+# Web API
+webapi/bin/
+webapi/obj/
+webapi/*.db
+webapi/*.db-shm
+webapi/*.db-wal
+webapi/Dockerfile
+webapi/docker-compose.override.yml
+
+# IDE
+.vscode/
+.idea/
+*.vs/
+*.user
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.nupkg
+*.snupkg
+packages/
+TestResults/
+
+# Logs
+*.log
+*.tmp
+*.bak
+*.swp
+*.dmp
