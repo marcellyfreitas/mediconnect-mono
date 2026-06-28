@@ -1,5 +1,7 @@
 # Mobile app
 mobileapp/.env
+mobileapp/.env.example
+mobileapp/eas.json
 mobileapp/node_modules/
 mobileapp/.expo/
 mobileapp/dist/
@@ -25,6 +27,8 @@ webapi/obj/
 webapi/*.db
 webapi/*.db-shm
 webapi/*.db-wal
+webapi/appsettings.json
+!webapi/appsettings.Development.json
 webapi/Dockerfile
 webapi/docker-compose.override.yml
 
@@ -44,6 +48,9 @@ Thumbs.db
 *.snupkg
 packages/
 TestResults/
+
+# Certificates
+*.pfx
 
 # Logs
 *.log
