@@ -31,8 +31,6 @@ O aplicativo mobile consome dados de uma API RESTful, fornecida pelo projeto web
   <img src="https://github.com/user-attachments/assets/8f3a78d6-ff35-40b5-9b83-0fce826f2bee" width="200" />
 </p>
 
----
-
 
 ---
  
