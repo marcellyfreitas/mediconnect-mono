@@ -49,7 +49,7 @@ public class ApplicationDbContext : DbContext
             }
 
             var connectionString = _configuration.GetConnectionString("MySqlConnection");
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 36));
+            var serverVersion = new MySqlServerVersion(new Version(8, 4, 9));
 
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }

@@ -1,5 +1,17 @@
 # 🏥 MediConnect 
 
+<p align="center">
+  <img src="docs/imagem/tela-principal.png" width="200" />
+  <img src="docs/imagem/login.png" width="200" />
+  <img src="docs/imagem/unidades.png" width="200" />
+</p>
+
+<p align="center">
+  <img src="docs/imagem/exames.png" width="200" />
+  <img src="docs/imagem/meus-agendamentos.png" width="200" />
+  <img src="docs/imagem/meu-perfil.png" width="200" />
+</p>
+
 **MediConnect** é um sistema completo para **agendamento de consultas médicas**, dividido em dois projetos:
 
 * Um **backend** desenvolvido em **ASP.NET Core MVC**, responsável pela API RESTful e lógica de negócio.
@@ -9,29 +21,6 @@ O objetivo do projeto é oferecer uma solução integrada que permita:
 
 * **Usuários**: Cadastrar-se e realizar agendamentos de consultas médicas de forma simplificada.
 * **Administradores**: Gerenciar as funcionalidades do aplicativo em uma área restrita.
- 
-
----
-
-## 📷 Prints
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/452861e6-43d6-45be-be6a-e12987c2b7e9" width="200" />
-  <img src="https://github.com/user-attachments/assets/38f9f5ec-03a0-45dc-ba91-90f1127bbb4a" width="200" />
-  <img src="https://github.com/user-attachments/assets/4b84d8ee-d5a0-4177-a890-1d08a65f0c85" width="200" />
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/899e4ff6-547f-4eb1-b4d6-fcbd6253c1ff" width="200" />
-  <img src="https://github.com/user-attachments/assets/0d28aaf5-96eb-40c0-9a73-f51df7fdfa1b" width="200" />
-  <img src="https://github.com/user-attachments/assets/bf112971-ee66-445c-bcce-eaf6a4732e8e" width="200" />
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/f04adbf8-ec1c-4cb3-a89b-215e66399a6a" width="200" />
-  <img src="https://github.com/user-attachments/assets/2a7d8b81-4602-4eac-b2df-035f6b869d78" width="200" />
-  <img src="https://github.com/user-attachments/assets/8f3a78d6-ff35-40b5-9b83-0fce826f2bee" width="200" />
-</p>
 
  
 ---
