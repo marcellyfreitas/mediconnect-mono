@@ -2,9 +2,9 @@ using WebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public interface IRepository<T>
+public interface IService<T>
 {
     Task<IEnumerable<T>> GetAllAsync();
 

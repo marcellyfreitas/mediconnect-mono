@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models.Dto;
 using WebApi.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -14,10 +14,10 @@ namespace WebApi.Controllers;
 [Route("api/v1/usuarios")]
 public class UsersController : ControllerBase
 {
-    private readonly IUserRepository<User> _repository;
+    private readonly IUserService<User> _repository;
     private readonly ILogger<UsersController> _logger;
 
-    public UsersController(IUserRepository<User> repository, ILogger<UsersController> logger)
+    public UsersController(IUserService<User> repository, ILogger<UsersController> logger)
     {
         _repository = repository;
         _logger = logger;

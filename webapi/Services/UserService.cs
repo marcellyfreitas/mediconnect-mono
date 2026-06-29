@@ -3,15 +3,15 @@ using WebApi.Database;
 using WebApi.Models;
 using WebApi.Helpers;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class UserRepository : IUserRepository<User>
+public class UserService : IUserService<User>
 {
     private readonly ApplicationDbContext _context;
 
-    private readonly ILogger<UserRepository> _logger;
+    private readonly ILogger<UserService> _logger;
 
-    public UserRepository(ApplicationDbContext context, ILogger<UserRepository> logger)
+    public UserService(ApplicationDbContext context, ILogger<UserService> logger)
     {
         _context = context;
         _logger = logger;

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models.Dto;
 using WebApi.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -14,10 +14,10 @@ namespace WebApi.Controllers;
 [Route("api/v1/especializacoes")]
 public class SpecializationController : ControllerBase
 {
-    private readonly IRepository<Specialization> _repository;
+    private readonly IService<Specialization> _repository;
     private readonly ILogger<SpecializationController> _logger;
 
-    public SpecializationController(IRepository<Specialization> repository, ILogger<SpecializationController> logger)
+    public SpecializationController(IService<Specialization> repository, ILogger<SpecializationController> logger)
     {
         _repository = repository;
         _logger = logger;

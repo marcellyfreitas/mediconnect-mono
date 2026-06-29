@@ -8,15 +8,15 @@ using WebApi.Models;
 using WebApi.Database;
 using WebApi.Models.Dto;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class UserAuthRepository : IAuthenticationRepository<User>
+public class UserAuthService : IAuthenticationService<User>
 {
     private readonly ApplicationDbContext _context;
     private readonly IConfiguration _configuration;
-    private readonly ILogger<UserAuthRepository> _logger;
+    private readonly ILogger<UserAuthService> _logger;
 
-    public UserAuthRepository(ApplicationDbContext context, IConfiguration configuration, ILogger<UserAuthRepository> logger)
+    public UserAuthService(ApplicationDbContext context, IConfiguration configuration, ILogger<UserAuthService> logger)
     {
         _context = context;
         _configuration = configuration;
@@ -232,14 +232,13 @@ public class UserAuthRepository : IAuthenticationRepository<User>
             await _context.SaveChangesAsync();
 
             var user = await _context.Users
-                .AsNoTracking()
                 .Include(u => u.address)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (user != null)
             {
                 user.AddressId = address.Id;
-                _context.Entry(user).State = EntityState.Modified;
+                user.UpdatedAt = DateTime.UtcNow;
             }
 
             await _context.SaveChangesAsync();

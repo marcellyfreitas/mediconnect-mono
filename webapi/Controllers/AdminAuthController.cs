@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
@@ -12,10 +12,10 @@ namespace WebApi.Controllers;
 [Route("api/v1/auth/admin")]
 public class AdminAuthController : ControllerBase
 {
-    private readonly IAuthenticationRepository<Administrator> _repository;
+    private readonly IAuthenticationService<Administrator> _repository;
     private readonly ILogger<AdminAuthController> _logger;
 
-    public AdminAuthController(IAuthenticationRepository<Administrator> authRepository, ILogger<AdminAuthController> logger)
+    public AdminAuthController(IAuthenticationService<Administrator> authRepository, ILogger<AdminAuthController> logger)
     {
         _repository = authRepository;
         _logger = logger;

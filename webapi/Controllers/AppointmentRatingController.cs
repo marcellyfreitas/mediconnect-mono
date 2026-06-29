@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models.Dto;
 using WebApi.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -14,10 +14,10 @@ namespace WebApi.Controllers;
 [Route("api/v1/agendamento-avaliacoes")]
 public class AppointmentRatingController : ControllerBase
 {
-    private readonly IRepository<AppointmentRating> _repository;
+    private readonly IService<AppointmentRating> _repository;
     private readonly ILogger<AppointmentRatingController> _logger;
 
-    public AppointmentRatingController(IRepository<AppointmentRating> repository, ILogger<AppointmentRatingController> logger)
+    public AppointmentRatingController(IService<AppointmentRating> repository, ILogger<AppointmentRatingController> logger)
     {
         _repository = repository;
         _logger = logger;

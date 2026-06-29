@@ -4,15 +4,15 @@ using WebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class MedicalExamRepository : IRepository<MedicalExam>
+public class MedicalExamService : IService<MedicalExam>
 {
     private readonly ApplicationDbContext _context;
 
-    private readonly ILogger<MedicalExamRepository> _logger;
+    private readonly ILogger<MedicalExamService> _logger;
 
-    public MedicalExamRepository(ApplicationDbContext context, ILogger<MedicalExamRepository> logger)
+    public MedicalExamService(ApplicationDbContext context, ILogger<MedicalExamService> logger)
     {
         _context = context;
         _logger = logger;

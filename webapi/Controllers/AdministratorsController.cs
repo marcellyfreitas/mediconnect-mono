@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Helpers;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models;
 using WebApi.Models.Dto;
 using WebApi.Models.ViewModels;
@@ -14,10 +14,10 @@ namespace WebApi.Controllers;
 [Route("api/v1/administradores")]
 public class AdministratorController : Controller
 {
-    private readonly IUserRepository<Administrator> _repository;
+    private readonly IUserService<Administrator> _repository;
     private readonly ILogger<AdministratorController> _logger;
 
-    public AdministratorController(IUserRepository<Administrator> AdministratorRepository, ILogger<AdministratorController> logger)
+    public AdministratorController(IUserService<Administrator> AdministratorRepository, ILogger<AdministratorController> logger)
     {
         _repository = AdministratorRepository;
         _logger = logger;

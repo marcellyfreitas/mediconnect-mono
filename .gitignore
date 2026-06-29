@@ -32,6 +32,9 @@ webapi/appsettings.json
 webapi/Dockerfile
 webapi/docker-compose.override.yml
 
+webapi.tests/bin/
+webapi.tests/obj/
+
 # IDE
 .vscode/
 .idea/

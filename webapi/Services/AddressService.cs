@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApi.Models.ViewModels;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class AddressRepository : IRepository<Address>
+public class AddressService : IService<Address>
 {
     private readonly ApplicationDbContext _context;
 
-    private readonly ILogger<AddressRepository> _logger;
+    private readonly ILogger<AddressService> _logger;
 
-    public AddressRepository(ApplicationDbContext context, ILogger<AddressRepository> logger)
+    public AddressService(ApplicationDbContext context, ILogger<AddressService> logger)
     {
         _context = context;
         _logger = logger;

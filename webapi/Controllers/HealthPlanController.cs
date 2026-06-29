@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models.Dto;
 using WebApi.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -14,10 +14,10 @@ namespace WebApi.Controllers;
 [Route("api/v1/planos")]
 public class HealthPlansController : ControllerBase
 {
-    private readonly IRepository<HealthPlan> _repository;
+    private readonly IService<HealthPlan> _repository;
     private readonly ILogger<HealthPlansController> _logger;
 
-    public HealthPlansController(IRepository<HealthPlan> HealthPlanRepository, ILogger<HealthPlansController> logger)
+    public HealthPlansController(IService<HealthPlan> HealthPlanRepository, ILogger<HealthPlansController> logger)
     {
         _repository = HealthPlanRepository;
         _logger = logger;

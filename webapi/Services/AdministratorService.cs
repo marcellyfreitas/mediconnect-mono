@@ -4,15 +4,15 @@ using WebApi.Models;
 using WebApi.Database;
 using WebApi.Helpers;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class AdministratorRepository : IUserRepository<Administrator>
+public class AdministratorService : IUserService<Administrator>
 {
     private readonly ApplicationDbContext _context;
 
-    private readonly ILogger<AdministratorRepository> _logger;
+    private readonly ILogger<AdministratorService> _logger;
 
-    public AdministratorRepository(ApplicationDbContext dBContext, ILogger<AdministratorRepository> logger)
+    public AdministratorService(ApplicationDbContext dBContext, ILogger<AdministratorService> logger)
     {
         _context = dBContext;
         _logger = logger;

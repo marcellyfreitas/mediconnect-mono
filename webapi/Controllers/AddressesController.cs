@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models.Dto;
 using WebApi.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -14,10 +14,10 @@ namespace WebApi.Controllers;
 [Route("api/v1/enderecos")]
 public class AddressesController : ControllerBase
 {
-    private readonly IRepository<Address> _repository;
+    private readonly IService<Address> _repository;
     private readonly ILogger<AddressesController> _logger;
 
-    public AddressesController(IRepository<Address> addressRepository, ILogger<AddressesController> logger)
+    public AddressesController(IService<Address> addressRepository, ILogger<AddressesController> logger)
     {
         _repository = addressRepository;
         _logger = logger;

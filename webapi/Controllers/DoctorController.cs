@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models.Dto;
 using WebApi.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -15,10 +15,10 @@ namespace WebApi.Controllers;
 [Route("api/v1/medicos")]
 public class DoctorController : ControllerBase
 {
-    private readonly IRepository<Doctor> _repository;
+    private readonly IService<Doctor> _repository;
     private readonly ILogger<DoctorController> _logger;
 
-    public DoctorController(IRepository<Doctor> repository, ILogger<DoctorController> logger)
+    public DoctorController(IService<Doctor> repository, ILogger<DoctorController> logger)
     {
         _repository = repository;
         _logger = logger;

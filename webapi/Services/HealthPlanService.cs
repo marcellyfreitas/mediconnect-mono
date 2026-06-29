@@ -4,46 +4,43 @@ using WebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class DoctorRepository : IRepository<Doctor>
+public class HealthPlanService : IService<HealthPlan>
 {
     private readonly ApplicationDbContext _context;
 
-    private readonly ILogger<DoctorRepository> _logger;
+    private readonly ILogger<HealthPlanService> _logger;
 
-    public DoctorRepository(ApplicationDbContext context, ILogger<DoctorRepository> logger)
+    public HealthPlanService(ApplicationDbContext context, ILogger<HealthPlanService> logger)
     {
         _context = context;
         _logger = logger;
     }
 
-    public async Task<IEnumerable<Doctor>> GetAllAsync()
+    public async Task<IEnumerable<HealthPlan>> GetAllAsync()
     {
-        return await _context.Doctors
-            .Include(u => u.Specialization)
-            .Include(d => d.DoctorMedicalCenters!)
-            .ThenInclude(dmc => dmc.MedicalCenter)
-            .AsNoTracking()
+        return await _context.HealthPlans
             .OrderByDescending(a => a.Id)
+            .Include(r => r.MedicalAgreements)
             .ToListAsync();
     }
 
-    public async Task<Doctor?> GetByIdAsync(int id)
+    public async Task<HealthPlan?> GetByIdAsync(int id)
     {
-        return await _context.Doctors
-            .Include(u => u.Specialization)
+        return await _context.HealthPlans
+            .Include(r => r.MedicalAgreements)
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<Doctor?> AddAsync(Doctor doctor)
+    public async Task<HealthPlan?> AddAsync(HealthPlan healthplan)
     {
         try
         {
-            _context.Doctors.Add(doctor);
+            _context.HealthPlans.Add(healthplan);
             await _context.SaveChangesAsync();
 
-            return doctor;
+            return healthplan;
         }
         catch (System.Exception ex)
         {
@@ -52,12 +49,12 @@ public class DoctorRepository : IRepository<Doctor>
         }
     }
 
-    public async Task UpdateAsync(Doctor doctor)
+    public async Task UpdateAsync(HealthPlan healthplan)
     {
         try
         {
-            doctor.UpdatedAt = DateTime.UtcNow;
-            _context.Entry(doctor).State = EntityState.Modified;
+            healthplan.UpdatedAt = DateTime.UtcNow;
+            _context.Entry(healthplan).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
         catch (System.Exception ex)
@@ -67,11 +64,11 @@ public class DoctorRepository : IRepository<Doctor>
         }
     }
 
-    public async Task DeleteAsync(Doctor doctor)
+    public async Task DeleteAsync(HealthPlan healthplan)
     {
         try
         {
-            _context.Doctors.Remove(doctor);
+            _context.HealthPlans.Remove(healthplan);
             await _context.SaveChangesAsync();
         }
         catch (System.Exception ex)

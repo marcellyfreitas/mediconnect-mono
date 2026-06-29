@@ -7,18 +7,18 @@ using WebApi.Helpers;
 using WebApi.Models;
 using WebApi.Database;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class AdminAuthRepository : IAuthenticationRepository<Administrator>
+public class AdminAuthService : IAuthenticationService<Administrator>
 {
     private readonly ApplicationDbContext _context;
     private readonly IConfiguration _configuration;
-    private readonly ILogger<AdminAuthRepository> _logger;
+    private readonly ILogger<AdminAuthService> _logger;
 
-    public AdminAuthRepository(
+    public AdminAuthService(
         ApplicationDbContext context,
         IConfiguration configuration,
-        ILogger<AdminAuthRepository> logger
+        ILogger<AdminAuthService> logger
     )
     {
         _context = context;

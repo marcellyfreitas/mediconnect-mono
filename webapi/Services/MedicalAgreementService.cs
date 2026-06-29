@@ -4,43 +4,41 @@ using WebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class HealthPlanRepository : IRepository<HealthPlan>
+public class MedicalAgreementService : IService<MedicalAgreement>
 {
     private readonly ApplicationDbContext _context;
 
-    private readonly ILogger<HealthPlanRepository> _logger;
+    private readonly ILogger<MedicalAgreementService> _logger;
 
-    public HealthPlanRepository(ApplicationDbContext context, ILogger<HealthPlanRepository> logger)
+    public MedicalAgreementService(ApplicationDbContext context, ILogger<MedicalAgreementService> logger)
     {
         _context = context;
         _logger = logger;
     }
 
-    public async Task<IEnumerable<HealthPlan>> GetAllAsync()
+    public async Task<IEnumerable<MedicalAgreement>> GetAllAsync()
     {
-        return await _context.HealthPlans
+        return await _context.MedicalAgreements
             .OrderByDescending(a => a.Id)
-            .Include(r => r.MedicalAgreements)
             .ToListAsync();
     }
 
-    public async Task<HealthPlan?> GetByIdAsync(int id)
+    public async Task<MedicalAgreement?> GetByIdAsync(int id)
     {
-        return await _context.HealthPlans
-            .Include(r => r.MedicalAgreements)
+        return await _context.MedicalAgreements
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<HealthPlan?> AddAsync(HealthPlan healthplan)
+    public async Task<MedicalAgreement?> AddAsync(MedicalAgreement medicalagreement)
     {
         try
         {
-            _context.HealthPlans.Add(healthplan);
+            _context.MedicalAgreements.Add(medicalagreement);
             await _context.SaveChangesAsync();
 
-            return healthplan;
+            return medicalagreement;
         }
         catch (System.Exception ex)
         {
@@ -49,12 +47,12 @@ public class HealthPlanRepository : IRepository<HealthPlan>
         }
     }
 
-    public async Task UpdateAsync(HealthPlan healthplan)
+    public async Task UpdateAsync(MedicalAgreement medicalagreement)
     {
         try
         {
-            healthplan.UpdatedAt = DateTime.UtcNow;
-            _context.Entry(healthplan).State = EntityState.Modified;
+            medicalagreement.UpdatedAt = DateTime.UtcNow;
+            _context.Entry(medicalagreement).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
         catch (System.Exception ex)
@@ -64,11 +62,11 @@ public class HealthPlanRepository : IRepository<HealthPlan>
         }
     }
 
-    public async Task DeleteAsync(HealthPlan healthplan)
+    public async Task DeleteAsync(MedicalAgreement medicalagreement)
     {
         try
         {
-            _context.HealthPlans.Remove(healthplan);
+            _context.MedicalAgreements.Remove(medicalagreement);
             await _context.SaveChangesAsync();
         }
         catch (System.Exception ex)

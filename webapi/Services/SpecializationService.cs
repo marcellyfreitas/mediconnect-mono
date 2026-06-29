@@ -4,15 +4,15 @@ using WebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class SpecializationRepository : IRepository<Specialization>
+public class SpecializationService : IService<Specialization>
 {
     private readonly ApplicationDbContext _context;
 
-    private readonly ILogger<SpecializationRepository> _logger;
+    private readonly ILogger<SpecializationService> _logger;
 
-    public SpecializationRepository(ApplicationDbContext context, ILogger<SpecializationRepository> logger)
+    public SpecializationService(ApplicationDbContext context, ILogger<SpecializationService> logger)
     {
         _context = context;
         _logger = logger;

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models.Dto;
 using WebApi.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -17,11 +17,11 @@ namespace WebApi.Controllers;
 [Route("api/v1/exames")]
 public class MedicalExamController : ControllerBase
 {
-    private readonly IRepository<MedicalExam> _repository;
+    private readonly IService<MedicalExam> _repository;
     private readonly ILogger<MedicalExamController> _logger;
     private readonly ApplicationDbContext _context;
 
-    public MedicalExamController(IRepository<MedicalExam> repository, ILogger<MedicalExamController> logger, ApplicationDbContext context)
+    public MedicalExamController(IService<MedicalExam> repository, ILogger<MedicalExamController> logger, ApplicationDbContext context)
     {
         _repository = repository;
         _logger = logger;

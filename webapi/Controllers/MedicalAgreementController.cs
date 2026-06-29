@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
-using WebApi.Repositories;
+using WebApi.Services;
 using WebApi.Models.Dto;
 using WebApi.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -14,10 +14,10 @@ namespace WebApi.Controllers;
 [Route("api/v1/convenios")]
 public class MedicalAgreementsController : ControllerBase
 {
-    private readonly IRepository<MedicalAgreement> _repository;
+    private readonly IService<MedicalAgreement> _repository;
     private readonly ILogger<MedicalAgreementsController> _logger;
 
-    public MedicalAgreementsController(IRepository<MedicalAgreement> MedicalAgreementRepository, ILogger<MedicalAgreementsController> logger)
+    public MedicalAgreementsController(IService<MedicalAgreement> MedicalAgreementRepository, ILogger<MedicalAgreementsController> logger)
     {
         _repository = MedicalAgreementRepository;
         _logger = logger;

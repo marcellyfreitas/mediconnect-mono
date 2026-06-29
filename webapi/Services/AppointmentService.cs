@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using WebApi.Models.ViewModels;
 using WebApi.Helpers;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class AppointmentRepository : IRepository<Appointment>
+public class AppointmentService : IService<Appointment>
 {
     private readonly ApplicationDbContext _context;
 
-    private readonly ILogger<AppointmentRepository> _logger;
+    private readonly ILogger<AppointmentService> _logger;
 
-    public AppointmentRepository(ApplicationDbContext context, ILogger<AppointmentRepository> logger)
+    public AppointmentService(ApplicationDbContext context, ILogger<AppointmentService> logger)
     {
         _context = context;
         _logger = logger;

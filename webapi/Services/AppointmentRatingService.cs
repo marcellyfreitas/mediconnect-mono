@@ -4,15 +4,15 @@ using WebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace WebApi.Repositories;
+namespace WebApi.Services;
 
-public class AppointmentRatingRepository : IRepository<AppointmentRating>
+public class AppointmentRatingService : IService<AppointmentRating>
 {
     private readonly ApplicationDbContext _context;
 
-    private readonly ILogger<AppointmentRatingRepository> _logger;
+    private readonly ILogger<AppointmentRatingService> _logger;
 
-    public AppointmentRatingRepository(ApplicationDbContext context, ILogger<AppointmentRatingRepository> logger)
+    public AppointmentRatingService(ApplicationDbContext context, ILogger<AppointmentRatingService> logger)
     {
         _context = context;
         _logger = logger;

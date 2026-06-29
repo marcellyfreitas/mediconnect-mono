@@ -8,7 +8,7 @@ builder.Services.AddCustomControllers();
 builder.Services.AddRazorPages();
 builder.Services.AddMvc();
 builder.Services.AddDbContext<ApplicationDbContext>();
-builder.Services.AddCustomRepository();
+builder.Services.AddCustomServices();
 builder.Services.AddCustomSwagger();
 
 var app = builder.Build();
